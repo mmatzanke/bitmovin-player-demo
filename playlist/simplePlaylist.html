@@ -11,16 +11,16 @@
 *
 -->
 <html lang="en">
+
 <head>
     <title>Bitmovin Demo</title>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="icon" type="../image/png" href="../images/bit-fav.png">
     <!-- Bitmovin Player -->
-    <script type="text/javascript"
-            src="//bitmovin-a.akamaihd.net/bitmovin-player/stable/7.1/bitmovinplayer.js"></script>
+    <script type="text/javascript" src="//bitmovin-a.akamaihd.net/bitmovin-player/stable/7.1/bitmovinplayer.js"></script>
 
     <style>
         body {
@@ -79,7 +79,10 @@
             margin-bottom: 10em;
         }
 
-        h1, h2, h3, p {
+        h1,
+        h2,
+        h3,
+        p {
             font-weight: 300;
             text-align: center;
             margin: 40px;
@@ -95,7 +98,8 @@
             background: #f69c2a;
         }
 
-        #webserver-warning h1, #webserver-warning h2 {
+        #webserver-warning h1,
+        #webserver-warning h2 {
             font-weight: 400;
         }
 
@@ -129,76 +133,86 @@
         }
     </style>
 </head>
+
 <body>
-<div id="wrapper">
-    <div id="banner">
-        <div class="logo"><img src="../images/bitmovin-logo.png"></div>
-        <div class="title"><h1>Simple Playlist</h1></div>
-        <div class="clear"></div>
-    </div>
-    <div class="container">
-        <h1>HTML5 Adaptive Streaming Player for MPEG-DASH & HLS</h1>
-        <h2>Your videos play everywhere with low startup delay, no buffering and in highest quality.</h2>
-        <div class="content">
-            <div class="player-wrapper">
-                <div id="player"></div>
+    <div id="wrapper">
+        <div id="banner">
+            <div class="logo">
+                <img src="../images/bitmovin-logo.png">
             </div>
-            <div class="description">
-                <p>For more information about the bitmovin player, please have a look at our online <a
-                        href="//bitmovin.com/support" target="_blank">Developer Section</a>.</p>
+            <div class="title">
+                <h1>Simple Playlist</h1>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="container">
+            <h1>HTML5 Adaptive Streaming Player for MPEG-DASH & HLS</h1>
+            <h2>Your videos play everywhere with low startup delay, no buffering and in highest quality.</h2>
+            <div class="content">
+                <div class="player-wrapper">
+                    <div id="player"></div>
+                </div>
+                <div class="description">
+                    <p>For more information about the bitmovin player, please have a look at our online
+                        <a href="//bitmovin.com/support" target="_blank">Developer Section</a>.</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
-    if (location.protocol === 'file:') {
-        document.getElementById('webserver-warning').style.display = 'block';
-    }
-
-    var playlist = [
-        {
-            "name": "Sintel",
-            "dash": "https://bitdash-a.akamaihd.net/content/sintel/sintel.mpd",
-            "hls": "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
-        },
-        {
-            "name": "Bitmovin Demo Video",
-            "dash": "//bitdash-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
-            "hls:": "//bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+    <script type="text/javascript">
+        if (location.protocol === 'file:') {
+            document.getElementById('webserver-warning').style.display = 'block';
         }
-    ];
 
-    var i = 0;
-
-    var conf = {
-        key: "YOUR-KEY-HERE",
-        source: {
-            dash: "//bitdash-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
-            hls: "//bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
-        },
-        events: {
-            onPlaybackFinished: function () {
-                if (i < playlist.length) {
-                    player.load({dash: playlist[i].dash, hls: playlist[i].hls});
-                    console.log('now playing ' + playlist[i].name);
-                    i++;
-                }
+        var playlist = [
+            {
+                "name": "Sintel",
+                "dash": "https://bitdash-a.akamaihd.net/content/sintel/sintel.mpd",
+                "hls": "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
             },
-            onReady: function () {
-                if (i > 0) {
-                    player.play();
+            {
+                "name": "Bitmovin Demo Video",
+                "dash": "//bitdash-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+                "hls:": "//bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+            }
+        ];
+
+        var i = 0;
+
+        var conf = {
+            key: "YOUR-KEY-HERE",
+            source: {
+                dash: "//bitdash-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+                hls: "//bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+            },
+            events: {
+                onPlaybackFinished: function () {
+                    if (i < playlist.length) {
+                        player.load({ dash: playlist[i].dash, hls: playlist[i].hls }).then(() => {
+                            player.seek(30);
+                            // Option1: setTimeout(() => {}, 100);
+                            // Option2: call player.getVideoBufferLength() in an interval till it's filled with data
+                        });
+                        console.log('now playing ' + playlist[i].name);
+                        i++;
+                    }
+                },
+                onReady: function () {
+                    if (i > 0) {
+                        player.play();
+                    }
                 }
             }
-        }
-    };
-    var player = bitmovin.player("player");
-    player.setup(conf).then(function (value) {
-        // Success
-        console.log("Successfully created Bitmovin Player instance");
-    }, function (reason) {
-        // Error!
-        console.log("Error while creating Bitmovin Player instance");
-    });
-</script>
+        };
+        var player = bitmovin.player("player");
+        player.setup(conf).then(function (value) {
+            // Success
+            console.log("Successfully created Bitmovin Player instance");
+        }, function (reason) {
+            // Error!
+            console.log("Error while creating Bitmovin Player instance");
+        });
+    </script>
 </body>
+
 </html>
